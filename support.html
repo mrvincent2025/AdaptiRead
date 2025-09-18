@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdaptiRead - Support</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .troubleshooting {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .troubleshooting h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .troubleshooting ul {
+            margin-left: 20px;
+        }
+        
+        .troubleshooting li {
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AdaptiRead</h1>
+            <p>AI-Powered Language Learning Support</p>
+        </div>
+        
+        <div class="section">
+            <h2>Welcome to AdaptiRead</h2>
+            <p>AdaptiRead is an innovative AI-powered language learning app that helps you master new languages through personalized articles and intelligent vocabulary management. Our app uses iOS 26's built-in AI models to create customized learning content based on your preferences and progress, all processed locally on your device.</p>
+            
+            <h3>Key Features:</h3>
+            <ul class="feature-list">
+                <li>AI-generated personalized articles in your target language</li>
+                <li>Smart vocabulary learning system with spaced repetition</li>
+                <li>Progress tracking and analytics</li>
+                <li>Multi-language support (English, Chinese, Japanese, Korean, Spanish, French, German, Italian, Portuguese, Russian)</li>
+                <li>Text-to-speech functionality for pronunciation practice</li>
+                <li>Cross-device synchronization via your personal iCloud</li>
+                <li>Adaptive difficulty levels</li>
+                <li>Achievement system to motivate learning</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I get started with the app?</div>
+                <div class="faq-answer">
+                    <p>When you first open the app, you'll be guided through a setup process where you can:</p>
+                    <ul>
+                        <li>Select your native language for the interface</li>
+                        <li>Choose your learning language</li>
+                        <li>Set your preferred difficulty level</li>
+                        <li>Select topics of interest</li>
+                    </ul>
+                    <p>Once setup is complete, tap the "Generate Article" button to create your first personalized learning content.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How does the AI article generation work?</div>
+                <div class="faq-answer">
+                    <p>Our app uses iOS 26's built-in AI models to generate articles based on:</p>
+                    <ul>
+                        <li>Your selected topics of interest</li>
+                        <li>Your current difficulty level</li>
+                        <li>Your vocabulary progress</li>
+                        <li>Your learning history</li>
+                    </ul>
+                    <p>Articles are generated completely offline on your device using iOS 26's native AI capabilities, ensuring complete privacy and fast performance without any internet connection required.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I manage my vocabulary?</div>
+                <div class="faq-answer">
+                    <p>The vocabulary system automatically tracks words you encounter while reading. You can:</p>
+                    <ul>
+                        <li>Tap on unfamiliar words to add them to your vocabulary list</li>
+                        <li>Review words in the Vocabulary tab</li>
+                        <li>Mark words as mastered when you feel confident</li>
+                        <li>Track your learning progress in the Statistics tab</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I use the app offline?</div>
+                <div class="faq-answer">
+                    <p>Yes! AdaptiRead works completely offline for all features:</p>
+                    <ul>
+                        <li>Generating new articles using iOS 26's built-in AI</li>
+                        <li>Reading previously generated articles</li>
+                        <li>Accessing your vocabulary list</li>
+                        <li>Viewing your learning statistics</li>
+                        <li>Text-to-speech functionality</li>
+                        <li>All learning activities and progress tracking</li>
+                    </ul>
+                    <p>No internet connection is required for any app functionality. Everything runs locally on your device.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I sync my data across devices?</div>
+                <div class="faq-answer">
+                    <p>Your learning data is automatically synced across all your devices using your personal iCloud account. This includes:</p>
+                    <ul>
+                        <li>Your vocabulary progress</li>
+                        <li>Reading history and statistics</li>
+                        <li>Generated articles</li>
+                        <li>Settings and preferences</li>
+                    </ul>
+                    <p>All data is stored in your personal iCloud account and is not accessible to us or any third parties. Make sure you're signed in to the same iCloud account on all devices.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Troubleshooting</h2>
+            
+            <div class="troubleshooting">
+                <h4>Article Generation Issues</h4>
+                <ul>
+                    <li>Check that you've selected topics of interest in Settings</li>
+                    <li>Try adjusting your difficulty level</li>
+                    <li>Ensure you have sufficient device storage space</li>
+                    <li>Restart the app if generation fails</li>
+                    <li>Make sure you're running iOS 26 or later</li>
+                </ul>
+            </div>
+            
+            <div class="troubleshooting">
+                <h4>Text-to-Speech Not Working</h4>
+                <ul>
+                    <li>Check your device's volume settings</li>
+                    <li>Ensure text-to-speech is enabled in your device settings</li>
+                    <li>Try selecting a different voice in the app settings</li>
+                    <li>Restart the app if the issue persists</li>
+                </ul>
+            </div>
+            
+            <div class="troubleshooting">
+                <h4>Data Sync Issues</h4>
+                <ul>
+                    <li>Verify you're signed in to your personal iCloud account</li>
+                    <li>Check your internet connection for iCloud sync</li>
+                    <li>Ensure iCloud storage is available</li>
+                    <li>Try signing out and back into iCloud</li>
+                    <li>Check iCloud settings for the app</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>App Information</h2>
+            <p><strong>Version:</strong> 1.0.0</p>
+            <p><strong>AI Model:</strong> iOS 26 Built-in AI Models (Local Processing)</p>
+            <p><strong>Storage:</strong> Local Device + Your Personal iCloud</p>
+            <p><strong>Supported Languages:</strong> English, Chinese (Simplified & Traditional), Japanese, Korean, Spanish, French, German, Italian, Portuguese, Russian</p>
+            <p><strong>Minimum iOS Version:</strong> iOS 26.0</p>
+        </div>
+        
+        <div class="contact-info">
+            <h3>Need More Help?</h3>
+            <p>If you can't find the answer to your question, please contact us:</p>
+            <p><strong>Email:</strong> <a href="mailto:mrvincent2025@163.com">mrvincent2025@163.com</a></p>
+            <p><strong>Response Time:</strong> We typically respond within 24-48 hours</p>
+            <p><strong>Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM (UTC)</p>
+        </div>
+    </div>
+    
+    <script>
+        // Simple FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all other answers
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.style.display = 'none';
+                });
+                
+                // Toggle current answer
+                answer.style.display = isOpen ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>

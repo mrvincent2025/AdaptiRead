@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdaptiRead - AI-Powered English Learning</title>
+    <meta name="description" content="AdaptiRead is an innovative AI-powered English learning app that helps you master English through personalized articles tailored to your skill level. Works completely offline using iOS 26's built-in AI models.">
+    <meta name="keywords" content="English learning, AI, offline, iOS, vocabulary, reading, AdaptiRead, adaptive difficulty, skill level">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Privacy Section */
+        .privacy {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .privacy-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .privacy-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        
+        .privacy-text {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .privacy-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .privacy-feature {
+            text-align: center;
+        }
+        
+        .privacy-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .privacy-feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .privacy-feature-text {
+            opacity: 0.8;
+        }
+        
+        /* App Info Section */
+        .app-info {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .app-info-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .app-info-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .app-info-text p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .app-specs {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .spec-value {
+            color: #666;
+        }
+        
+        .app-mockup {
+            text-align: center;
+        }
+        
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 40px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .phone-mockup::before {
+            content: 'AdaptiRead';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .app-info-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .phone-mockup {
+                width: 250px;
+                height: 500px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content fade-in-up">
+                <h1 class="logo">AdaptiRead</h1>
+                <p class="tagline">Master English with AI-powered personalized articles tailored to your skill level. Works completely offline using iOS 26's built-in intelligence.</p>
+                <div class="cta-buttons">
+                    <a href="#features" class="btn btn-primary">Learn More</a>
+                    <a href="support.html" class="btn btn-secondary">Get Support</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">Why Choose AdaptiRead?</h2>
+            <p class="section-subtitle scroll-reveal">Experience personalized English learning with articles adapted to your skill level, complete privacy and offline functionality</p>
+            
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">AI-Powered Learning</h3>
+                    <p class="feature-description">Generate personalized English articles tailored to your skill level using iOS 26's built-in AI models. No internet required - everything runs locally on your device for complete privacy.</p>
+                </div>
+                
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Complete Privacy</h3>
+                    <p class="feature-description">We don't collect any user data. All your learning progress, vocabulary, and articles are stored locally on your device and in your personal iCloud.</p>
+                </div>
+                
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Works Offline</h3>
+                    <p class="feature-description">Learn anywhere, anytime. No internet connection needed for article generation, vocabulary management, or progress tracking.</p>
+                </div>
+                
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">Smart Vocabulary</h3>
+                    <p class="feature-description">Intelligent vocabulary management with spaced repetition. Track your progress and master new words efficiently.</p>
+                </div>
+                
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Adaptive Difficulty</h3>
+                    <p class="feature-description">Articles automatically adjust to your English proficiency level. From beginner to advanced, get content that challenges you just enough to improve.</p>
+                </div>
+                
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">Multi-Language Support</h3>
+                    <p class="feature-description">Learn English from your native language. Support for 10+ native languages including Chinese, Japanese, Korean, Spanish, French, German, Italian, Portuguese, and Russian.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="privacy">
+        <div class="container">
+            <div class="privacy-content scroll-reveal">
+                <h2 class="privacy-title">Your Privacy Matters</h2>
+                <p class="privacy-text">AdaptiRead is designed with privacy-first principles. We believe your learning data should remain yours.</p>
+                
+                <div class="privacy-features">
+                    <div class="privacy-feature">
+                        <div class="privacy-feature-icon">🚫</div>
+                        <h3 class="privacy-feature-title">No Data Collection</h3>
+                        <p class="privacy-feature-text">We don't collect, store, or transmit any user data to our servers.</p>
+                    </div>
+                    
+                    <div class="privacy-feature">
+                        <div class="privacy-feature-icon">🏠</div>
+                        <h3 class="privacy-feature-title">Local Processing</h3>
+                        <p class="privacy-feature-text">All AI processing happens on your device using iOS 26's built-in models.</p>
+                    </div>
+                    
+                    <div class="privacy-feature">
+                        <div class="privacy-feature-icon">☁️</div>
+                        <h3 class="privacy-feature-title">Your iCloud</h3>
+                        <p class="privacy-feature-text">Data syncs only to your personal iCloud account, not ours.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <a href="privacy.html" class="btn btn-secondary">Read Full Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Info Section -->
+    <section class="app-info">
+        <div class="container">
+            <div class="app-info-content">
+                <div class="app-info-text scroll-reveal">
+                <h2>Built for iOS 26</h2>
+                <p>AdaptiRead leverages the latest iOS 26 capabilities to provide a seamless, private, and powerful English learning experience.</p>
+                <p>Whether you're a beginner or advanced learner, get personalized English articles that match your skill level and help you improve.</p>
+                    
+                    <div class="app-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Version</span>
+                            <span class="spec-value">1.0.0</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">AI Model</span>
+                            <span class="spec-value">iOS 26 Built-in AI</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Storage</span>
+                            <span class="spec-value">Local + Your iCloud</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Native Languages</span>
+                            <span class="spec-value">10+ Supported</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">iOS Version</span>
+                            <span class="spec-value">iOS 26.0+</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Internet</span>
+                            <span class="spec-value">Not Required</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-mockup scroll-reveal">
+                    <div class="phone-mockup"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AdaptiRead</h3>
+                    <p>AI-powered English learning that respects your privacy. Learn offline with iOS 26's built-in intelligence.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p><a href="support.html">Help Center</a></p>
+                    <p><a href="mailto:mrvincent2025@163.com">Contact Us</a></p>
+                    <p><a href="privacy.html">Privacy Policy</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Features</h3>
+                    <p>Adaptive English Learning</p>
+                    <p>Complete Privacy</p>
+                    <p>Multi-Language Support</p>
+                    <p>Progress Tracking</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: mrvincent2025@163.com</p>
+                    <p>Website: AdaptiRead.com</p>
+                    <p>Platform: iOS 26+</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AdaptiRead. All rights reserved. Built with privacy in mind.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
